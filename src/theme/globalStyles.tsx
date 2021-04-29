@@ -29,7 +29,7 @@ body {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-gap: 3rem;
-        
+		padding-bottom:5%;
 	}                       
 
 
