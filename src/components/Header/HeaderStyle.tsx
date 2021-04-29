@@ -28,6 +28,7 @@ export const Header = styled.header`
 		);
 		background-size: 100%;
 		background-clip: text;
+		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		filter: drop-shadow(rgb(0, 133, 163) 2px 2px);
 
