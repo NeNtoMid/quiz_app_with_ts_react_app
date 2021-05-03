@@ -39,6 +39,8 @@ export const Button = styled.button<ButtonProps>`
 		},
 	}) => white};
 
+	outline: none;
+
 	border: 3px solid
 		${({
 			theme: {

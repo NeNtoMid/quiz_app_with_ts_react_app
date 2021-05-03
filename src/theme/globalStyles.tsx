@@ -14,7 +14,7 @@ html {
 }
 body {
     width:100%;
-    height:100vh;
+	min-height:100vh;
     line-height:1.7;
     box-sizing:border-box;
     background-image: url(${backgroundImg} );
@@ -22,7 +22,7 @@ body {
     background-repeat:no-repeat;
 
     font-family: 'Catamaran', sans-serif;
-/* font-family: 'Fascinate Inline', cursive; */
+
 
 
     #root {

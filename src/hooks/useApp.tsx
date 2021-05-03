@@ -85,7 +85,7 @@ const useApp = () => {
 					score: userAnswerIsProper ? prevState.score + 1 : prevState.score,
 					clicked: prevState.questionNum === 9 ? false : true,
 				}));
-			}, 500);
+			}, 3000);
 
 			if (questions.questionNum === 9) {
 				setQuestions((prevState) => ({
