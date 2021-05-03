@@ -17,4 +17,5 @@ export interface StateInterface {
 	score: number;
 	clicked: boolean;
 	loading: boolean;
+	isStarted: boolean;
 }

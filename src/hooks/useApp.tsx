@@ -20,6 +20,7 @@ const useApp = () => {
 		score: 0,
 		clicked: false,
 		loading: false,
+		isStarted: false,
 	});
 
 	const [loading, setLoading] = useState<boolean>(false);
@@ -49,13 +50,15 @@ const useApp = () => {
 		} catch ({ message }) {
 			console.log(message);
 		} finally {
-			setQuestions((prevState) => ({ ...prevState, clicked: true }));
+			setQuestions((prevState) => ({ ...prevState, isStarted: true }));
 			setLoading(false);
 		}
 	};
 
 	const handleChangeQuestionNum = useCallback(
 		(id: number, answer: string, correctAnswer: string) => {
+			if (questions.clicked) return;
+
 			let userAnswerIsProper: boolean = false;
 
 			if (answer === correctAnswer) {
@@ -73,8 +76,8 @@ const useApp = () => {
 
 					return { ...el };
 				}),
+				clicked: true,
 			}));
-
 			setTimeout(() => {
 				setQuestions((prevState) => ({
 					...prevState,
@@ -83,18 +86,19 @@ const useApp = () => {
 							? prevState.questionNum + 1
 							: prevState.questionNum,
 					score: userAnswerIsProper ? prevState.score + 1 : prevState.score,
-					clicked: prevState.questionNum === 9 ? false : true,
+					isStarted: prevState.questionNum === 9 ? false : true,
+					clicked: false,
 				}));
 			}, 3000);
 
 			if (questions.questionNum === 9) {
 				setQuestions((prevState) => ({
 					...prevState,
-					clicked: false,
+					isStarted: false,
 				}));
 			}
 		},
-		[questions.questionNum]
+		[questions.questionNum, questions.clicked]
 	);
 
 	return {

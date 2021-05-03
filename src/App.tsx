@@ -25,7 +25,7 @@ const App = () => {
 			<Header
 				score={questions.score}
 				startQuiz={handleStartAndFetchQuiz}
-				clicked={questions.clicked}
+				isStarted={questions.isStarted}
 			/>
 			<Questions
 				questions={questions}
