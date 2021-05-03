@@ -8,8 +8,8 @@ export const Spinner = styled.div`
 		height: 10em;
 	}
 
-	margin: 60px auto;
-	font-size: 10px;
+	margin: 6rem auto;
+	font-size: 1rem;
 	position: relative;
 	text-indent: -9999em;
 	border-top: 1.1em solid rgba(112, 112, 112, 0.2);

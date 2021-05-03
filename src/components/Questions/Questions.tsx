@@ -4,7 +4,7 @@ import * as Styles from './QuestionsStyle';
 
 import Question from './Question/Question';
 
-import { StateInterface } from '../../shared/interfaces/app.interface';
+import { StateInterface } from '../../shared/interfaces/questions.interface';
 
 import Spinner from './../UI/Spinner/Spinner';
 

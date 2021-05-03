@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 import axios from './../config/axios-config';
 
 import {
 	QuestionInterface,
 	StateInterface,
-} from '../shared/interfaces/app.interface';
+} from '../shared/interfaces/questions.interface';
 
 interface AxiosResponseInterface {
 	response_code: number;
@@ -31,11 +31,7 @@ const useApp = () => {
 
 			setLoading(true);
 
-			let err = false;
-
-			if (data.response_code !== 0) {
-				err = true;
-			}
+			const err = data.response_code !== 0;
 
 			setQuestions((prevState) => ({
 				...prevState,
@@ -55,51 +51,48 @@ const useApp = () => {
 		}
 	};
 
-	const handleChangeQuestionNum = useCallback(
-		(id: number, answer: string, correctAnswer: string) => {
-			if (questions.clicked) return;
+	const handleChangeQuestionNum = (
+		id: number,
+		answer: string,
+		correctAnswer: string
+	) => {
+		if (questions.clicked) return;
 
-			let userAnswerIsProper: boolean = false;
+		const userAnswerIsProper = answer === correctAnswer;
 
-			if (answer === correctAnswer) {
-				userAnswerIsProper = true;
-			}
+		setQuestions((prevState) => ({
+			...prevState,
 
+			data: prevState.data?.map((el, index) => {
+				if (index === prevState.questionNum) {
+					el.user_answer = userAnswerIsProper;
+					el.chosen = id.toString();
+				}
+
+				return { ...el };
+			}),
+			clicked: true,
+		}));
+		setTimeout(() => {
 			setQuestions((prevState) => ({
 				...prevState,
-
-				data: prevState.data?.map((el, index) => {
-					if (index === prevState.questionNum) {
-						el.user_answer = userAnswerIsProper;
-						el.chosen = id.toString();
-					}
-
-					return { ...el };
-				}),
-				clicked: true,
+				questionNum:
+					prevState.questionNum < 9
+						? prevState.questionNum + 1
+						: prevState.questionNum,
+				score: userAnswerIsProper ? prevState.score + 1 : prevState.score,
+				isStarted: prevState.questionNum === 9 ? false : true,
+				clicked: false,
 			}));
-			setTimeout(() => {
-				setQuestions((prevState) => ({
-					...prevState,
-					questionNum:
-						prevState.questionNum < 9
-							? prevState.questionNum + 1
-							: prevState.questionNum,
-					score: userAnswerIsProper ? prevState.score + 1 : prevState.score,
-					isStarted: prevState.questionNum === 9 ? false : true,
-					clicked: false,
-				}));
-			}, 3000);
+		}, 2500);
 
-			if (questions.questionNum === 9) {
-				setQuestions((prevState) => ({
-					...prevState,
-					isStarted: false,
-				}));
-			}
-		},
-		[questions.questionNum, questions.clicked]
-	);
+		if (questions.questionNum === 9) {
+			setQuestions((prevState) => ({
+				...prevState,
+				isStarted: false,
+			}));
+		}
+	};
 
 	return {
 		questions,

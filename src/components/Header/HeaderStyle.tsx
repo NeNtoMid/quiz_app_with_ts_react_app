@@ -61,5 +61,6 @@ export const Header = styled.header`
 		font-family: 'Catamaran', sans-serif;
 		border-radius: 1rem;
 		cursor: pointer;
+		outline: none;
 	}
 `;

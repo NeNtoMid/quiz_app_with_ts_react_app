@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import * as Styles from './HeaderStyle';
 
@@ -21,4 +21,9 @@ const Header = ({ score, startQuiz, isStarted }: HeaderProps) => {
 	);
 };
 
-export default Header;
+export default memo(
+	Header,
+	(prevProps, nextProps) =>
+		prevProps.score === nextProps.score &&
+		prevProps.isStarted === nextProps.isStarted
+);

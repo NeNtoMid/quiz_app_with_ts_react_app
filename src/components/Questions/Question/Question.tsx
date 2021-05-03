@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as Styles from './QuestionStyle';
 
-import { QuestionInterface } from '../../../shared/interfaces/app.interface';
+import { QuestionInterface } from '../../../shared/interfaces/questions.interface';
 
 interface QuestionProps {
 	changeQuestion: (id: number, answer: string, correctAnswer: string) => void;
