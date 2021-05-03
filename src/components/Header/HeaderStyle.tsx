@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-	font-family: 'Fascinate Inline', cursive;
-
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
@@ -10,6 +8,7 @@ export const Header = styled.header`
 
 	h1 {
 		text-transform: uppercase;
+		font-family: 'Fascinate Inline', cursive;
 		font-size: 7rem;
 		text-align: center;
 		background-image: linear-gradient(
@@ -33,6 +32,17 @@ export const Header = styled.header`
 		filter: drop-shadow(rgb(0, 133, 163) 2px 2px);
 
 		font-weight: 400;
+	}
+
+	h2 {
+		color: ${({
+			theme: {
+				colors: {
+					common: { white },
+				},
+			},
+		}) => white};
+		font-size: 3rem;
 	}
 
 	button {
