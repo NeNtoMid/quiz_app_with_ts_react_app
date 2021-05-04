@@ -1,4 +1,4 @@
-# In development status
+# In development status link: https://quiz-app-with-ts-react-app.vercel.app
 
 ## Getting Started with Create React App
 
