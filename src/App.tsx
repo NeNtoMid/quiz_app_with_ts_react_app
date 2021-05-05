@@ -10,7 +10,7 @@ import GlobalStyles from './theme/globalStyles';
 
 import Header from './components/Header/Header';
 
-import Questions from './components/Questions/Questions';
+import Question from './components/Question/Question';
 
 const App = () => {
 	const {
@@ -27,7 +27,7 @@ const App = () => {
 				startQuiz={handleStartAndFetchQuiz}
 				isStarted={questions.isStarted}
 			/>
-			<Questions
+			<Question
 				questions={questions}
 				changeQuestion={handleChangeQuestion}
 				loading={loading}

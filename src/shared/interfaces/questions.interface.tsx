@@ -7,7 +7,7 @@ export interface QuestionInterface {
 	incorrect_answers: string[];
 	user_answer?: boolean;
 	chosen?: string;
-	correctAnswerId: number;
+	answers: string[];
 }
 
 export interface QuestionsStateInterface {

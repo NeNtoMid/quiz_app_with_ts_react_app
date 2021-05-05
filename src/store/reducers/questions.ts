@@ -33,19 +33,17 @@ const fetchQuestionsSuccess = (
 	draft: QuestionsStateInterface,
 	actionPayload: Payload | undefined
 ) => {
-	let err = false;
 	if (actionPayload && actionPayload.data) {
-		err = actionPayload.data.response_code !== 0;
-
 		draft.data = actionPayload.data.results.map((el) => ({
 			...el,
-			correctAnswerId: Math.floor(Math.random() * 3),
+			answers: [...el.incorrect_answers, el.correct_answer].sort(
+				() => Math.random() - 0.5
+			),
 		}));
 
 		draft.totalQuestions = actionPayload.data.results.length;
+		draft.error = actionPayload.data.response_code !== 0;
 	}
-
-	draft.error = err;
 
 	draft.score = 0;
 	draft.questionNum = 0;

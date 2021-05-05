@@ -1,4 +1,4 @@
-import { call, put, takeEvery, delay } from 'redux-saga/effects';
+import { call, put, delay, takeLatest } from 'redux-saga/effects';
 
 import { AxiosResponseInterface } from '../../shared/interfaces/questions.interface';
 import { ActionsType } from '../actions/actionsType';
@@ -55,8 +55,8 @@ const changeQuestionView = (userAnswerIsProper: string) => ({
 });
 
 function* questionsSaga() {
-	yield takeEvery(ActionsType.FETCH_QUESTIONS_REQUEST, fetchQuiz);
-	yield takeEvery(ActionsType.CHANGE_QUESTION_REQUEST, changeQuestionNumber);
+	yield takeLatest(ActionsType.FETCH_QUESTIONS_REQUEST, fetchQuiz);
+	yield takeLatest(ActionsType.CHANGE_QUESTION_REQUEST, changeQuestionNumber);
 }
 
 export default questionsSaga;
