@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as Styles from './QuestionStyle';
+import * as Styles from './Question.styles';
 
 import { QuestionInterface } from '../../../shared/interfaces/questions.interface';
 
@@ -8,15 +8,23 @@ interface QuestionProps {
 	changeQuestion: (id: number, answer: string, correctAnswer: string) => void;
 	question: QuestionInterface;
 	questionNum: number;
+	totalQuestions: number;
 }
 
-const Question = ({ changeQuestion, question, questionNum }: QuestionProps) => {
+const Question = ({
+	changeQuestion,
+	question,
+	questionNum,
+	totalQuestions,
+}: QuestionProps) => {
 	const questionAnswers = [...question.incorrect_answers];
 
 	questionAnswers.splice(question.correctAnswerId, 0, question.correct_answer);
 	return (
 		<Styles.Article>
-			<h3>Question: {questionNum} / 10</h3>
+			<h3>
+				Question: {questionNum} / {totalQuestions}
+			</h3>
 			<p dangerouslySetInnerHTML={{ __html: question.question }} />
 			{questionAnswers.map((el, index) => {
 				let userAnswer = undefined;
@@ -35,6 +43,7 @@ const Question = ({ changeQuestion, question, questionNum }: QuestionProps) => {
 						answer={el}
 						chosen={question.chosen}
 						index={index}
+						value={el}
 					>
 						{el}
 					</Styles.Button>

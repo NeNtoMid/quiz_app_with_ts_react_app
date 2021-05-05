@@ -10,12 +10,17 @@ export interface QuestionInterface {
 	correctAnswerId: number;
 }
 
-export interface StateInterface {
+export interface QuestionsStateInterface {
 	data: QuestionInterface[] | undefined;
 	error: boolean;
 	questionNum: number;
 	score: number;
 	clicked: boolean;
-	loading: boolean;
 	isStarted: boolean;
+	totalQuestions: number;
+}
+
+export interface AxiosResponseInterface {
+	response_code: number;
+	results: QuestionInterface[];
 }

@@ -16,7 +16,7 @@ const App = () => {
 	const {
 		questions,
 		loading,
-		handleChangeQuestionNum,
+		handleChangeQuestionNumber,
 		handleStartAndFetchQuiz,
 	} = useApp();
 	return (
@@ -29,7 +29,7 @@ const App = () => {
 			/>
 			<Questions
 				questions={questions}
-				changeQuestion={handleChangeQuestionNum}
+				changeQuestion={handleChangeQuestionNumber}
 				loading={loading}
 			/>
 		</ThemeProvider>
