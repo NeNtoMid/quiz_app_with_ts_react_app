@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useAppSelector } from './redux';
+import { useAppSelector } from './reduxTypes';
 
-import { fetchQuiz, changeQuestionNumber } from './../store/actions/index';
+import { changeQuestionNumber, fetchQuiz } from './../store/actions/index';
 
 import { useDispatch } from 'react-redux';
 

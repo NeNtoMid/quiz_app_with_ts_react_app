@@ -2,7 +2,10 @@ import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
 import questionsReducer from './../store/reducers/questions';
 
-import reduxThunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../store/sagas/index';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
 	questions: questionsReducer,
@@ -15,9 +18,10 @@ const composeEnhancers =
 
 export const store = createStore(
 	rootReducer,
-	composeEnhancers(applyMiddleware(reduxThunk))
+	composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
+sagaMiddleware.run(rootSaga);
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
