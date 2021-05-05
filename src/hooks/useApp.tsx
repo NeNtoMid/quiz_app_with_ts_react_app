@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useAppSelector } from './reduxTypes';
 
-import { changeQuestionNumber, fetchQuiz } from './../store/actions/index';
+import { changeQuestion, fetchQuiz } from './../store/actions/index';
 
 import { useDispatch } from 'react-redux';
 
@@ -19,7 +19,7 @@ const useApp = () => {
 		setLoading(false);
 	};
 
-	const handleChangeQuestionNumber = (
+	const handleChangeQuestion = (
 		id: number,
 		answer: string,
 		correctAnswer: string
@@ -28,14 +28,14 @@ const useApp = () => {
 
 		const userAnswerIsProper = answer === correctAnswer;
 
-		dispatch(changeQuestionNumber(id, userAnswerIsProper));
+		dispatch(changeQuestion(id, userAnswerIsProper));
 	};
 
 	return {
 		questions,
 		loading,
 		handleStartAndFetchQuiz,
-		handleChangeQuestionNumber,
+		handleChangeQuestion,
 	};
 };
 

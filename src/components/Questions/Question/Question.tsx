@@ -44,9 +44,8 @@ const Question = ({
 						chosen={question.chosen}
 						index={index}
 						value={el}
-					>
-						{el}
-					</Styles.Button>
+						dangerouslySetInnerHTML={{ __html: el }}
+					/>
 				);
 			})}
 		</Styles.Article>
